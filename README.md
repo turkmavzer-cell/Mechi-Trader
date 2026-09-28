@@ -37,6 +37,7 @@ Stratejinin TypeScript referans kodu: [`reference/mechi-radar/`](reference/mechi
 | [`docs/05-TEST-PLANI.md`](docs/05-TEST-PLANI.md) | Mechi Radar ile eşleşme testi, demo ileri testi, canlıya geçiş şartları |
 | [`docs/06-TELEFON-KURULUM.md`](docs/06-TELEFON-KURULUM.md) | Sadece telefonla kurulum adımları |
 | [`docs/07-YOL-HARITASI.md`](docs/07-YOL-HARITASI.md) | Aşamalar ve yapılacaklar listesi |
+| [`docs/08-HESAP-BILGILERI.md`](docs/08-HESAP-BILGILERI.md) | Doğrulanmış hesap, sembol ve lot bilgileri |
 
 ## Önemli uyarılar
 

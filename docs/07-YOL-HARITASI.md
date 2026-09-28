@@ -1,10 +1,10 @@
 # Yol haritası
 
 ## Aşama 0 — Doğrulama (kullanıcı, telefon)
-- [ ] FxPro cTrader demo hesabı açıldı
-- [ ] cTrader Mobile'da Algo → cBots → Cloud seçeneği var
+- [x] FxPro cTrader demo hesabı açıldı (#10650955, 1.000 $)
+- [x] cTrader Mobile'da Algo → cBots → Cloud seçeneği var (FxPro cTrader, "cTrader Bulut 7/24")
 - [ ] Deneme `.algo` dosyası telefondan yüklenebildi (Aşama 1'deki "Merhaba" botu)
-- [ ] Japan 225 sembol adı, lot adımı, en küçük lot, tipik spread not edildi
+- [~] Japan 225 sembol adı, lot adımı, en küçük lot, tipik spread not edildi (`#JP225_Z26` tamam, `#Japan225` bekliyor — bkz. `08-HESAP-BILGILERI.md`)
 
 ## Aşama 1 — İskelet ve derleme hattı
 - [ ] Depo kökünde .NET çözümü: Core, Bot, Tests
