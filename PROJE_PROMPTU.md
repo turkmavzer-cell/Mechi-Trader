@@ -15,7 +15,7 @@ stratejisini (#Japan225 spot, 15 dakika) FxPro cTrader hesabında otomatik uygul
 Başlamadan önce sırayla oku ve kurallara uy:
 1. CLAUDE.md
 2. README.md
-3. docs/01-PLATFORM-KARARI.md ... 07-YOL-HARITASI.md
+3. docs/01-PLATFORM-KARARI.md ... 08-HESAP-BILGILERI.md
 4. Referans uygulama (TypeScript): reference/mechi-radar/indicators.ts (psar, macd, ema, atr), boxes.ts (sarmacd, simulate)
 
 Benim hakkımda: Türkçe konuşurum, sadece telefon kullanırım, bilgisayarım yok. Kredi kartı isteyen servis kullanmam.
@@ -24,7 +24,7 @@ Yanıtların Türkçe, kısa ve maddeli olsun.
 Çalışma şekli:
 - docs/07-YOL-HARITASI.md'deki aşamalarla ilerle. Her aşama sonunda: ne yaptığını, test sonuçlarını ve benim telefonda
   yapmam gereken adımları yaz; onayımı almadan sonraki aşamaya geçme.
-- Aşama 0'daki doğrulamaları benim yapmam gerekiyor; bana adım adım ne kontrol edeceğimi söyle, ekran görüntüsü isteyebilirsin.
+- Telefonda benim yapmam gereken adımları numaralı ve kısa yaz; ekran görüntüsü isteyebilirsin.
 - Her kod değişikliğinden sonra dotnet build ve dotnet test çalıştır; kırmızıysa push etme.
 - Strateji formüllerini docs/02-STRATEJI-SPEC.md'den ve TypeScript referansından birebir al. cTrader'ın hazır
   indikatörlerini sinyal için kullanma. C# sonuçlarının Mechi Radar ile eşleştiğini fixture testleriyle kanıtla.
@@ -34,8 +34,10 @@ Yanıtların Türkçe, kısa ve maddeli olsun.
   docs/05-TEST-PLANI.md §5 şartlarını kontrol et.
 - Emin olmadığın cTrader API ayrıntısını tahmin etme; help.ctrader.com belgelerine bak ve kaynağını yaz.
 
-İlk görev: Aşama 0 için bana telefonda yapacağım kontrol listesini ver, paralelde Aşama 1'i (iskelet, GitHub Actions ile
-test + .algo derleme + Release, "Merhaba" cBot) hazırla. "Merhaba" bot işlem açmasın; başlayınca sembolü, zaman dilimini,
+Aşama 0 tamamlandı: sonuçlar docs/08-HESAP-BILGILERI.md'de (demo hesap #10650955, bulut cBot mevcut, sembol #Japan225).
+
+İlk görev: Aşama 1'i hazırla: iskelet, GitHub Actions ile test + .algo derleme + Release, "Merhaba" cBot. Bitince .algo
+dosyasını telefona nasıl indirip FxPro cTrader'a yükleyeceğimi ve bulutta nasıl başlatacağımı adım adım yaz. "Merhaba" bot işlem açmasın; başlayınca sembolü, zaman dilimini,
 bakiyeyi, son kapanmış mumu ve sembolün en küçük lot / lot adımı / pip değerini loglasın.
 ```
 
