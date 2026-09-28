@@ -14,6 +14,18 @@ Bilgisayar gerekmez. Adımlar cTrader ve FxPro arayüzüne göre değişebilir; 
 2. Dosyaya dokun → **cTrader ile aç** (açmazsa: cTrader → Algo → cBots → Yükle/Upload → dosyayı seç).
 3. cTrader → **Algo** → **cBots** listesinde `MechiTrader` görünmeli.
 
+## B2. Aşama 1: "Merhaba" botunu deneme
+
+Bu sürüm **işlem açmaz**; yalnızca başlangıçta bilgi loglar. Beklenen log satırları (sıra değişebilir):
+
+- `Merhaba · MechiTrader başladı · Aşama 1 · Merhaba · işlem AÇMAZ`
+- `Hesap: #10650955 · DEMO · … · bakiye … USD`
+- `Sembol: #Japan225 · zaman dilimi: … (Minute15 benzeri) …`
+- `Fiyat: ondalık … · pip … · tick … · spread …`
+- `Lot: 1 lot = … birim · en küçük … · adım … · en büyük …`
+- `Değer: pip değeri (1 birim) … · 1 lot = … USD/puan …` (beklenen ≈ 1 USD/puan; farklıysa bildir)
+- `Son kapanmış mum: açılış … UTC · A … Y … D … K …`
+
 ## C. Başlatma
 
 1. `MechiTrader` → **+ Örnek ekle (instance)** → sembol: `#Japan225` (spot, vadeli `#JP225_…` değil), zaman dilimi: **15dk (m15)**.

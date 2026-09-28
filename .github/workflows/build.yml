@@ -1,0 +1,65 @@
+name: Derle ve yayınla
+
+# - Her push ve PR: dotnet test + .algo derleme (Release yok).
+# - main'e push ya da elle çalıştırma (Actions → "Derle ve yayınla" → Run workflow):
+#   ayrıca v1.0.<n> etiketli GitHub Release oluşturur ve MechiTrader.algo'yu ekler.
+#   main dışı daldan elle çalıştırılırsa Release "pre-release" olarak işaretlenir.
+
+on:
+  push:
+    branches: ['**']
+    paths-ignore: ['**.md']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore MechiTrader.sln
+
+      - name: Test
+        run: dotnet test MechiTrader.sln -c Release --no-restore --logger "console;verbosity=normal"
+
+      - name: Build (.algo)
+        run: dotnet build src/MechiTrader/MechiTrader/MechiTrader.csproj -c Release --no-restore
+
+      - name: .algo dosyasını topla
+        run: |
+          mkdir -p out
+          cp src/MechiTrader/MechiTrader/bin/Release/net6.0/MechiTrader.algo out/MechiTrader.algo
+          ls -la out
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MechiTrader-algo-${{ github.run_number }}
+          path: out/MechiTrader.algo
+
+      - name: Release (v1.0.<n>)
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v1.0.${{ github.run_number }}"
+          SHORT="${GITHUB_SHA::7}"
+          PRE=""
+          if [ "${GITHUB_REF}" != "refs/heads/main" ]; then PRE="--prerelease"; fi
+          gh release create "$TAG" out/MechiTrader.algo \
+            --target "$GITHUB_SHA" \
+            --title "MechiTrader $TAG" \
+            --notes "Dal: ${GITHUB_REF_NAME} · commit ${SHORT}. Yalnızca DEMO hesap için. Telefonda kurulum: docs/06-TELEFON-KURULUM.md" \
+            $PRE

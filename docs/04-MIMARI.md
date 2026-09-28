@@ -11,8 +11,9 @@ mechi-trader/
 │   │   ├── Strategies/              # SarMacd.cs (ilk), sonra Sra.cs (+ filtreler), Squeeze.cs → Signal(i, dir)
 │   │   ├── HigherTimeframe.cs       # Kapanmış üst mum eşlemesi, haftalık birleştirme
 │   │   └── Risk/                    # Hacim hesabı, günlük limit, art arda stop sayacı
-│   └── MechiTrader.Bot/             # cTrader cBot (cTrader.Automate NuGet) → .algo
-│       └── MechiTraderBot.cs        # OnStart / OnBar / OnPositionClosed; Core'u çağırır, emir gönderir
+│   └── MechiTrader/MechiTrader/     # cTrader cBot (cTrader.Automate NuGet) → MechiTrader.algo
+│       ├── MechiTrader.csproj       # .algo adı üst klasörden gelir (MechiTrader), bu yüzden iç içe klasör
+│       └── MechiTrader.cs           # OnStart / OnBar / OnPositionClosed; Core'u çağırır, emir gönderir
 ├── reference/mechi-radar/        # TypeScript referans (Mechi Radar kopyası)
 ├── tools/export-fixtures.ts     # Referans koddan CSV fixture üretimi (GitHub Actions)
 ├── tests/
@@ -20,7 +21,10 @@ mechi-trader/
 └── fixtures/                        # Mechi Radar'dan üretilen referans mumlar ve sinyaller (CSV)
 ```
 
-- **Core** cTrader'a bağımlı değildir. Böylece testler Linux'ta (GitHub Actions) çalışır.
+- **Core** (`net6.0`) cTrader'a bağımlı değildir; Bot'a proje referansıyla bağlanır ve `MechiTrader.Core.dll` `.algo`'nun içine paketlenir
+  (bulut yalnızca derleme zamanı referanslarını destekler; bkz. [Cloud requirements](https://help.ctrader.com/ctrader-algo/documentation/cbots/cloud-requirements/)).
+- Bot `AccessRights.None` ile işaretlidir; bulutta tam erişimli cBot çalışmaz ([Access rights](https://help.ctrader.com/ctrader-algo/guides/access-rights/)).
+- Core saf C# olduğu için testler Linux'ta (GitHub Actions) çalışır.
 - **Bot** ince bir katmandır: `Bars` → `double[]` dizilerine çevirir, Core'dan sinyal alır, `ExecuteMarketOrder` ile emir verir.
 - Bulut kısıtları nedeniyle bot dosya yazmaz, dışarıya HTTP isteği atmaz. Loglama `Print()` ile yapılır; bildirimler için cTrader'ın
   kendi pozisyon bildirimleri kullanılır.
@@ -55,7 +59,8 @@ Zaman dilimi ve sembol, cBot'un başlatıldığı grafikten gelir (`TimeFrame`, 
 
 ## Derleme hattı (GitHub Actions)
 
-- Tetikleyici: `main`'e push ve elle.
-- Adımlar: `dotnet test` (Core) → `dotnet build -c Release` (Bot, `cTrader.Automate`) → `.algo` dosyasını Release'e ekle
-  (`v1.0.<run>` etiketi).
+- Dosya: `.github/workflows/build.yml`. .NET 8 SDK, `cTrader.Automate` 1.0.21 (Linux'ta `.algo` üretir).
+- Her push/PR: `dotnet test` → `dotnet build -c Release` → `.algo` Actions artifact'ı.
+- `main`'e push ya da elle çalıştırma: ayrıca `v1.0.<run>` etiketli Release + `MechiTrader.algo`
+  (main dışı daldan elle çalıştırılırsa pre-release).
 - Telefon: Release sayfasından `.algo` indirilir, cTrader Mobile ile açılır.

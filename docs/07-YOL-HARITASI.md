@@ -7,9 +7,10 @@
 - [x] Japan 225 sembol bilgileri alındı; bot `#Japan225` (spot) kullanacak — bkz. `08-HESAP-BILGILERI.md`
 
 ## Aşama 1 — İskelet ve derleme hattı
-- [ ] Depo kökünde .NET çözümü: Core, Bot, Tests
-- [ ] GitHub Actions: test + `.algo` derleme + Release (`v1.0.<n>`)
-- [ ] "Merhaba" cBot: başlayınca sembol, zaman dilimi, bakiye ve üst TF son kapanmış mumunu loglar; işlem açmaz
+- [x] Depo kökünde .NET çözümü: Core, Bot, Tests (`MechiTrader.sln`)
+- [x] GitHub Actions: test + `.algo` derleme + Release (`v1.0.<n>`) — `.github/workflows/build.yml`
+- [x] "Merhaba" cBot: başlayınca hesap, sembol, zaman dilimi, bakiye, son kapanmış mum, en küçük lot / lot adımı / pip değeri loglar; işlem açmaz
+- [ ] Kullanıcı: `.algo` telefondan yüklendi, bulutta başladı, log ekran görüntüsü alındı
 
 ## Aşama 2 — Core: indikatörler ve SAR + EMA 200 + MACD
 - [ ] Sma, Rma, Ema, Atr, Macd, Psar (+ birim testleri)

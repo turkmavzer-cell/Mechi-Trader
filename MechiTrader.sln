@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EAB2BA67-1814-4540-8C36-20420ED33CF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechiTrader.Core", "src\MechiTrader.Core\MechiTrader.Core.csproj", "{70F44691-F6D7-46B9-89E5-07DB51EDCDDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MechiTrader", "MechiTrader", "{1CC56D5E-68A2-4B45-AEF2-810DCB7FCF35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechiTrader", "src\MechiTrader\MechiTrader\MechiTrader.csproj", "{836B256C-5EEC-4FD6-9913-2B6ED3B68A8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A0ED9F73-F5A2-44A9-BFEA-8AE452D840C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechiTrader.Tests", "tests\MechiTrader.Tests\MechiTrader.Tests.csproj", "{1B7D4772-4ABD-407A-9DC4-0AA7A52D9326}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70F44691-F6D7-46B9-89E5-07DB51EDCDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F44691-F6D7-46B9-89E5-07DB51EDCDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F44691-F6D7-46B9-89E5-07DB51EDCDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F44691-F6D7-46B9-89E5-07DB51EDCDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{836B256C-5EEC-4FD6-9913-2B6ED3B68A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{836B256C-5EEC-4FD6-9913-2B6ED3B68A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{836B256C-5EEC-4FD6-9913-2B6ED3B68A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{836B256C-5EEC-4FD6-9913-2B6ED3B68A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7D4772-4ABD-407A-9DC4-0AA7A52D9326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7D4772-4ABD-407A-9DC4-0AA7A52D9326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7D4772-4ABD-407A-9DC4-0AA7A52D9326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7D4772-4ABD-407A-9DC4-0AA7A52D9326}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70F44691-F6D7-46B9-89E5-07DB51EDCDDD} = {EAB2BA67-1814-4540-8C36-20420ED33CF5}
+		{1CC56D5E-68A2-4B45-AEF2-810DCB7FCF35} = {EAB2BA67-1814-4540-8C36-20420ED33CF5}
+		{836B256C-5EEC-4FD6-9913-2B6ED3B68A8C} = {1CC56D5E-68A2-4B45-AEF2-810DCB7FCF35}
+		{1B7D4772-4ABD-407A-9DC4-0AA7A52D9326} = {A0ED9F73-F5A2-44A9-BFEA-8AE452D840C6}
+	EndGlobalSection
+EndGlobal

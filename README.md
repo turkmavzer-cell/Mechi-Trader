@@ -3,7 +3,9 @@
 Mechi Radar'daki kutulu stratejileri (ilk sürüm: **SAR + EMA 200 + MACD**, `#Japan225`, 15dk) FxPro hesabında **otomatik** çalıştıran işlem botu.
 Sinyal geldiğinde pozisyonu açar, stop ve hedefi koyar; pozisyon hedef ya da stopla kapanır.
 
-> **Durum:** Planlama. Kod henüz yazılmadı. Başlamak için `PROJE_PROMPTU.md` içeriğini yeni bir Claude Code oturumuna ver.
+> **Durum:** Aşama 1 — iskelet, derleme hattı ve işlem açmayan "Merhaba" cBot. Strateji henüz yok.
+>
+> Derleme (bilgisayar gerekir; telefonda GitHub Actions yapar): `dotnet build` · `dotnet test`
 
 ## Neden cTrader Cloud
 

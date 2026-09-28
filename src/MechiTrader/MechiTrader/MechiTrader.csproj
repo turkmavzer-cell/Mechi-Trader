@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    cTrader cBot. cTrader.Automate paketi derlemeden sonra .algo üretir.
+    .algo adı, proje klasörünün üst klasör adından gelir: src/MechiTrader/MechiTrader → MechiTrader.algo
+  -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>cAlgo.Robots</RootNamespace>
+    <AssemblyName>MechiTrader</AssemblyName>
+    <!-- Linux/CI: .algo'yu cTrader'ın yerel Belgeler klasörüne kopyalama. -->
+    <AlgoPublish>False</AlgoPublish>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="cTrader.Automate" Version="1.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MechiTrader.Core\MechiTrader.Core.csproj" />
+  </ItemGroup>
+</Project>

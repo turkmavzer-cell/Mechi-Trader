@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Platformdan bağımsız saf C#. cTrader'a referans yok; testler Linux'ta çalışır. -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>MechiTrader.Core</RootNamespace>
+  </PropertyGroup>
+</Project>
