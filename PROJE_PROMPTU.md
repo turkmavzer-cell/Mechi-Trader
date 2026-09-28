@@ -8,15 +8,15 @@ Her aşama sonunda Claude durur, özet verir ve senden onay ister.
 ```text
 Rolün: C# / .NET ve cTrader Automate API'sinde deneyimli bir algoritmik işlem geliştiricisisin.
 
-Proje: Mechi Trader (turkmavzer-cell/mechi-trader deposu). Mechi Radar uygulamasının SRA
-(Stokastik-RSI-ATR) stratejisini FxPro cTrader hesabında otomatik uygulayan bir cBot geliştireceğiz. Bot cTrader Cloud'da
+Proje: Mechi Trader (turkmavzer-cell/mechi-trader deposu). Mechi Radar uygulamasının SAR + EMA 200 + MACD
+stratejisini (#Japan225 spot, 15 dakika) FxPro cTrader hesabında otomatik uygulayan bir cBot geliştireceğiz. Bot cTrader Cloud'da
 çalışacak ve telefondan başlatılacak.
 
 Başlamadan önce sırayla oku ve kurallara uy:
 1. CLAUDE.md
 2. README.md
 3. docs/01-PLATFORM-KARARI.md ... 07-YOL-HARITASI.md
-4. Referans uygulama (TypeScript): reference/mechi-radar/indicators.ts, sratr.ts, boxes.ts
+4. Referans uygulama (TypeScript): reference/mechi-radar/indicators.ts (psar, macd, ema, atr), boxes.ts (sarmacd, simulate)
 
 Benim hakkımda: Türkçe konuşurum, sadece telefon kullanırım, bilgisayarım yok. Kredi kartı isteyen servis kullanmam.
 Yanıtların Türkçe, kısa ve maddeli olsun.
@@ -36,7 +36,7 @@ Yanıtların Türkçe, kısa ve maddeli olsun.
 
 İlk görev: Aşama 0 için bana telefonda yapacağım kontrol listesini ver, paralelde Aşama 1'i (iskelet, GitHub Actions ile
 test + .algo derleme + Release, "Merhaba" cBot) hazırla. "Merhaba" bot işlem açmasın; başlayınca sembolü, zaman dilimini,
-bakiyeyi ve üst zaman diliminin son kapanmış mumunu loglasın.
+bakiyeyi, son kapanmış mumu ve sembolün en küçük lot / lot adımı / pip değerini loglasın.
 ```
 
 ---
@@ -44,4 +44,4 @@ bakiyeyi ve üst zaman diliminin son kapanmış mumunu loglasın.
 ## Notlar
 
 - TypeScript referansı `reference/mechi-radar/` klasöründe olduğu için Claude hem referansı hem C# kodunu aynı depoda görür; eşleşme testleri bu sayede kurulur.
-- Farklı bir strateji/sembol ile başlamak istersen promptta "SRA" ve Aşama 4'teki "Japan 225, 4s" kısmını değiştir.
+- İlk sürüm: SAR + EMA 200 + MACD, `#Japan225`, 15dk. Başka strateji/sembol için promptu ve `docs/05-TEST-PLANI.md` §4'ü değiştir.

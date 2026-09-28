@@ -8,7 +8,7 @@ mechi-trader/
 ├── src/
 │   ├── MechiTrader.Core/            # Platformdan bağımsız, saf C# (net6.0): indikatörler, sinyaller, risk hesabı
 │   │   ├── Indicators/              # Sma, Rma, Ema, Rsi, Stoch, Atr, Adx, Psar, Macd, Bollinger, Keltner, LinReg
-│   │   ├── Strategies/              # Sra.cs (+ filtreler), SarMacd.cs, Squeeze.cs → Signal(i, dir)
+│   │   ├── Strategies/              # SarMacd.cs (ilk), sonra Sra.cs (+ filtreler), Squeeze.cs → Signal(i, dir)
 │   │   ├── HigherTimeframe.cs       # Kapanmış üst mum eşlemesi, haftalık birleştirme
 │   │   └── Risk/                    # Hacim hesabı, günlük limit, art arda stop sayacı
 │   └── MechiTrader.Bot/             # cTrader cBot (cTrader.Automate NuGet) → .algo
@@ -29,7 +29,7 @@ mechi-trader/
 
 | Parametre | Tür | Varsayılan | Açıklama |
 |---|---|---|---|
-| `Strategy` | enum | `SRA` | `SRA`, `SRA_EMA200`, `SRA_ADX`, `SAR_MACD`, `SQUEEZE` |
+| `Strategy` | enum | `SAR_MACD` | `SAR_MACD` (ilk sürüm); sonra `SRA`, `SRA_EMA200`, `SRA_ADX`, `SQUEEZE` |
 | `StopAtr` | double | 1,5 | Stop = StopAtr × ATR(14) |
 | `RewardRisk` | double | 2,0 | Hedef = RewardRisk × stop |
 | `RiskPercent` | double | 1,0 | İşlem başına bakiye riski (%) |
@@ -47,11 +47,11 @@ Zaman dilimi ve sembol, cBot'un başlatıldığı grafikten gelir (`TimeFrame`, 
 
 1. `Enabled` değilse veya durdurma kurallarından biri etkinse çık.
 2. Son kapanmış mum `Bars.Last(1)`. Kapanış, yüksek, düşük dizilerini hazırla (en az 300 mum).
-3. Üst zaman dilimi mumlarını al; oluşan son mumu çıkar; kapanmış mum eşlemesini yap.
+3. (Yalnızca SRA ailesi) Üst zaman dilimi mumlarını al; oluşan son mumu çıkar; kapanmış mum eşlemesini yap. SAR + MACD'de bu adım yok.
 4. Core stratejisinden son kapanmış mum için sinyal iste.
 5. Aynı etiketle açık pozisyon varsa çık.
 6. Spread kontrolü, hacim hesabı, `ExecuteMarketOrder(yön, sembol, hacim, etiket, stopPips, hedefPips)`.
-7. Sonucu logla: `LONG GİRİŞ 65.515 · Stop 65.243 · Hedef 66.059 · hacim 0.3 · risk 0,5%`.
+7. Sonucu logla: `LONG GİRİŞ 65.900 · Stop 65.671 · Hedef 66.357 · hacim 0.04 · risk 0,9%`.
 
 ## Derleme hattı (GitHub Actions)
 

@@ -11,10 +11,9 @@
 - [ ] GitHub Actions: test + `.algo` derleme + Release (`v1.0.<n>`)
 - [ ] "Merhaba" cBot: başlayınca sembol, zaman dilimi, bakiye ve üst TF son kapanmış mumunu loglar; işlem açmaz
 
-## Aşama 2 — Core: indikatörler ve SRA
-- [ ] Sma, Rma, Ema, Rsi, Stoch, Atr (+ birim testleri)
-- [ ] Üst zaman dilimi eşlemesi + haftalık birleştirme
-- [ ] SRA sinyali ve pozisyon simülasyonu (Mechi Radar `simulate` ile aynı)
+## Aşama 2 — Core: indikatörler ve SAR + EMA 200 + MACD
+- [ ] Sma, Rma, Ema, Atr, Macd, Psar (+ birim testleri)
+- [ ] SAR + MACD sinyali ve pozisyon simülasyonu (Mechi Radar `simulate` ile aynı)
 - [ ] `tools/export-fixtures.ts` (reference/ kodu + Yahoo) + GitHub Actions ile CSV üretimi
 - [ ] Eşleşme testleri yeşil
 
@@ -29,6 +28,6 @@
 - [ ] Canlıya geçiş şartları değerlendirmesi
 
 ## Aşama 5 — Genişletme (isteğe bağlı)
-- [ ] SRA + EMA 200, SRA + ADX, SAR + MACD, Squeeze
+- [ ] SRA (+ üst zaman dilimi eşlemesi), SRA + EMA 200, SRA + ADX, Squeeze
 - [ ] Birden fazla sembol / zaman dilimi (canlıda en fazla 10 bulut örneği)
 - [ ] Canlı hesap (kullanıcı onayıyla, düşük risk)

@@ -28,10 +28,15 @@ Botun en önemli kısmı. Aşağıdaki kurallar **kodda zorunlu**, parametreyle 
 
 - Her emir **SL ve TP ile birlikte** gönderilir. SL'siz pozisyon açılmaz; emir SL/TP'siz dolarsa hemen kapatılır.
 - Kayma (slippage) üst sınırı parametresi (`MaxSlippagePips`).
-- Her pozisyon, bot etiketi (`Label = "MechiTrader-SRA-<sembol>-<tf>"`) ile açılır. Bot yalnızca kendi etiketli pozisyonlarını yönetir,
+- Her pozisyon, bot etiketi (`Label = "MechiTrader-<strateji>-<sembol>-<tf>"`, ör. `MechiTrader-SARMACD-Japan225-M15`) ile açılır. Bot yalnızca kendi etiketli pozisyonlarını yönetir,
   kullanıcının elle açtığı işlemlere dokunmaz.
 - Yeniden başlatmada bot açık pozisyonlarını etiketten tanır ve "açık pozisyon varken yeni sinyal yok" kuralını sürdürür.
 - Hafta sonu / piyasa kapalıyken emir denenmez; reddedilen emir tekrar denenmez, loglanır.
+
+## 15dk'da maliyet (ilk sürüm)
+
+`#Japan225` 15dk'da stop ≈ 230 puan, spread ≈ 17 puan → işlem başına ≈ **0,07R** maliyet. Spread filtresi (%10) bu seviyede işlemi
+engellemez ama spread genişlediğinde (seans açılışı, haber) sinyal atlanır. Demo raporunda gerçek spread ve kayma ayrıca izlenir.
 
 ## Canlıya geçiş
 

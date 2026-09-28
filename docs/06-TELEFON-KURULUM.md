@@ -16,10 +16,10 @@ Bilgisayar gerekmez. Adımlar cTrader ve FxPro arayüzüne göre değişebilir; 
 
 ## C. Başlatma
 
-1. `MechiTrader` → **+ Örnek ekle (instance)** → sembol: `#Japan225` (spot, vadeli `#JP225_…` değil), zaman dilimi: 4s.
-2. Parametreler: `Strategy = SRA`, `RiskPercent = 1` (demo), diğerleri varsayılan.
+1. `MechiTrader` → **+ Örnek ekle (instance)** → sembol: `#Japan225` (spot, vadeli `#JP225_…` değil), zaman dilimi: **15dk (m15)**.
+2. Parametreler: `Strategy = SAR_MACD`, `RiskPercent = 1` (demo), diğerleri varsayılan.
 3. **Cloud'da başlat** (Start in Cloud). Telefon kapansa da bot çalışır.
-4. Log sekmesinde `Başladı · SRA · Japan225 · H4 · üst TF D1` satırını gör.
+4. Log sekmesinde `Başladı · SAR_MACD · Japan225 · M15` satırını gör.
 
 ## D. Takip ve durdurma
 

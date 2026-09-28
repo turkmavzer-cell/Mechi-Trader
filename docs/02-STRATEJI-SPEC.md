@@ -9,7 +9,8 @@ Botun sinyalleri Mechi Radar'daki TypeScript koduyla **aynı** olmalı. Çelişk
 | Ortak pozisyon motoru, SAR + MACD, Squeeze | `boxes.ts` |
 | Mum birleştirme (20dk, 2s, 4s) | `candles.ts` |
 
-İlk sürümde yalnızca **SRA** uygulanır. Diğerleri parametreyle seçilebilir hale sonraki aşamada gelir.
+**İlk sürümde yalnızca SAR + EMA 200 + MACD uygulanır** (kullanıcı kararı: `#Japan225`, 15dk; bkz. §4a). Üst zaman dilimi gerekmez.
+SRA ve diğerleri parametreyle seçilebilir hale sonraki aşamada gelir.
 
 ## 1. Genel kurallar (tüm stratejiler)
 
@@ -56,7 +57,31 @@ Seri başındaki yetersiz veri NaN'dır; NaN içeren hesaplar sinyal üretmez.
   Haftalık mum Pazartesi 00:00 UTC'de başlar, süresi 7 gündür.
 - cTrader'da oluşmakta olan son üst mum `Bars.Last(0)`'dır; **kullanılmaz**.
 
-## 4. SRA (Stokastik-RSI-ATR) — ilk sürüm
+## 4a. SAR + EMA 200 + MACD — ilk sürüm
+
+Referans: `boxes.ts → BOX_CANDIDATES['sarmacd']`, `indicators.ts → psar, macd, ema`.
+
+**Parabolic SAR (0,02 / 0,02 / 0,2)**, mum dizisi `H, L`:
+- `sar[0]` yok. `yukarı = H[1] ≥ H[0]`; `sar = yukarı ? L[0] : H[0]`; `ep = yukarı ? H[1] : L[1]`; `af = 0,02`; `sar[1] = sar`.
+- Her `i ≥ 2`: `sar = sar + af·(ep − sar)`.
+  - Yukarı trendde: `sar = min(sar, L[i−1], L[i−2])`; `L[i] < sar` ise dönüş: `yukarı = false`, `sar = ep`, `ep = L[i]`, `af = 0,02`;
+    değilse `H[i] > ep` ise `ep = H[i]`, `af = min(af + 0,02, 0,2)`.
+  - Aşağı trendde simetrik: `sar = max(sar, H[i−1], H[i−2])`; `H[i] > sar` ise dönüş; değilse `L[i] < ep` ise `ep = L[i]`, `af` artar.
+  - `sar[i] = sar`.
+
+**MACD (12, 26, 9):** `çizgi = EMA12(C) − EMA26(C)`; `sinyal = EMA9(çizgi)`, çizginin ilk geçerli değerinden başlar (SMA ile tohumlanır). **EMA 200** kapanıştan.
+
+**Sinyal** (kapanan mum `i`):
+1. `yön[i] = C[i] > sar[i] ? +1 : −1` (sar yoksa yön yok).
+2. `yön[i−1]` geçerli ve `yön[i] ≠ yön[i−1]` ise dönüş var.
+3. Dönüş `+1`'e ve `C[i] > EMA200[i]` ve `çizgi[i] > sinyal[i]` → **LONG**.
+4. Dönüş `−1`'e ve `C[i] < EMA200[i]` ve `çizgi[i] < sinyal[i]` → **SHORT**.
+
+Not: yön, SAR'ın iç trend durumuna göre değil **kapanışın SAR'a göre konumuna** göre belirlenir (referansla aynı olsun diye).
+
+**Veri ihtiyacı:** EMA 200 için en az ~300 kapanmış 15dk mum (`MarketData.GetBars` geçmişi yeterli olmalı).
+
+## 4. SRA (Stokastik-RSI-ATR) — sonraki sürüm
 
 Her kapanan mum `i` için:
 
@@ -69,8 +94,6 @@ Her kapanan mum `i` için:
 
 - **SRA + EMA 200:** SRA şartına ek olarak LONG için `kapanış > EMA200`, SHORT için `kapanış < EMA200`.
 - **SRA + ADX:** SRA şartına ek olarak `ADX(14) < 25`. ADX, +DM/−DM ve TR'nin RMA14'ü, `DX = 100·|+DI − −DI| / (+DI + −DI)`, `ADX = RMA14(DX)`.
-- **SAR + EMA 200 + MACD:** Parabolic SAR (0,02 / 0,02 / 0,2) fiyatın altına geçer (yön değişimi), `kapanış > EMA200` ve
-  `MACD(12,26,9) > sinyal` → LONG; tersi SHORT. SAR başlangıç ve kural ayrıntısı: `indicators.ts → psar`.
 - **TTM Squeeze:** Bollinger (20, 2) önceki mumda Keltner (20, 1,5 × ATR20, orta = EMA20) içindeydi, bu mumda değil
   (sıkışma bitti); momentum = `linreg(kapanış − ((en yüksek20 + en düşük20)/2 + SMA20)/2, 20)`;
   `mom > 0`, `mom > mom[i−1]`, `kapanış > SMA50` → LONG; tersi SHORT.

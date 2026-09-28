@@ -28,7 +28,9 @@ cTrader masaüstü gerektirir. Bilgisayar olmadığı sürece atlanır. Mechi Ra
 ## 4. Demo ileri testi (zorunlu)
 
 - FxPro cTrader **demo** hesabı, cTrader Cloud'da 1 bot örneği (demo sınırı), `RiskPercent = 1`.
-- Önerilen: `#Japan225` (spot), 4s, SRA (Mechi Radar testinde 2,4 yılda +20R; ancak son 11 ayda yaklaşık başa baş, +2R / 55 işlem — kenar kanıtlanmış değil). En az **8 hafta**.
+- **Seçilen (kullanıcı kararı): `#Japan225` (spot), 15dk, SAR + EMA 200 + MACD.** Mechi Radar'da son ~4 haftada +12R / 36 işlem (%44 hedef),
+  ama örnek küçük ve uzun dönemde Japan 225 1s–2s'te zararda; 15dk'da maliyet ≈ 0,07R/işlem. En az **8 hafta**.
+- 15dk'da 8 haftada ≈ 70 işlem beklenir; canlıya geçiş değerlendirmesi için en az 50 kapanmış işlem hedeflenir.
 - Her hafta kontrol:
   - Botun açtığı her işlemin Mechi Radar grafiğinde aynı mumda LONG/SHORT kutusu var mı? Yoksa neden (veri farkı, spread filtresi, lot)?
   - SL/TP her pozisyonda var mı, doğru mesafede mi?
@@ -37,7 +39,7 @@ cTrader masaüstü gerektirir. Bilgisayar olmadığı sürece atlanır. Mechi Ra
 ## 5. Canlıya geçiş şartları (hepsi)
 
 1. Eşleşme testleri yeşil.
-2. Demo'da en az 8 hafta ve en az 20 kapanmış işlem.
+2. Demo'da en az 8 hafta ve en az 20 kapanmış işlem (15dk'da hedef ≥ 50).
 3. Demo'da kural dışı davranış yok: SL'siz pozisyon, çift pozisyon, limit aşımı, etiketsiz işlem.
 4. Demo sonucu, maliyetler dahil, aynı dönemin Mechi Radar sonucundan belirgin kötü değil (fark büyükse nedeni bulunmuş olmalı).
 5. Kullanıcı açık onay verdi. İlk canlı hafta `RiskPercent ≤ 0,25`.

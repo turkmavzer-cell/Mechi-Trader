@@ -1,6 +1,6 @@
 # Mechi Trader
 
-Mechi Radar'daki kutulu stratejileri (önce **SRA · Stokastik-RSI-ATR**) FxPro hesabında **otomatik** çalıştıran işlem botu.
+Mechi Radar'daki kutulu stratejileri (ilk sürüm: **SAR + EMA 200 + MACD**, `#Japan225`, 15dk) FxPro hesabında **otomatik** çalıştıran işlem botu.
 Sinyal geldiğinde pozisyonu açar, stop ve hedefi koyar; pozisyon hedef ya da stopla kapanır.
 
 > **Durum:** Planlama. Kod henüz yazılmadı. Başlamak için `PROJE_PROMPTU.md` içeriğini yeni bir Claude Code oturumuna ver.
@@ -42,7 +42,7 @@ Stratejinin TypeScript referans kodu: [`reference/mechi-radar/`](reference/mechi
 ## Önemli uyarılar
 
 - **Önce demo.** Canlı hesaba geçiş, `docs/05-TEST-PLANI.md`'deki şartlar sağlanmadan yapılmaz.
-- Geçmiş test sonuçları (Mechi Radar deposu `research/SRATR.md`) spread/komisyon hariçtir ve kenar incedir: SRA'da işlem başına ortalama
+- Geçmiş test sonuçları (Mechi Radar deposu `research/SRATR.md`) spread/komisyon hariçtir ve kenar incedir. SAR + MACD Japan 225 15dk'da son ~4 haftada +12R / 36 işlem, ama uzun dönemde Japan 225 1s–2s'te zararda. SRA'da işlem başına ortalama
   +0,01…+0,08R. Japan 225 4s'te son 11 ayda sonuç başa baş (+2R / 55 işlem). Otomatik işlem bu tabloyu iyileştirmez; sadece uygular.
 - Kaldıraçlı CFD işlemleri sermayenin tamamını kaybettirebilir.
 - Türkiye'de yerleşik kişilerin SPK lisansı olmayan yurt dışı aracı kurumlarla işlem yapması hukuken sorunlu olabilir.
