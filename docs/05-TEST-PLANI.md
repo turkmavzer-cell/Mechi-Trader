@@ -28,7 +28,7 @@ cTrader masaüstü gerektirir. Bilgisayar olmadığı sürece atlanır. Mechi Ra
 ## 4. Demo ileri testi (zorunlu)
 
 - FxPro cTrader **demo** hesabı, cTrader Cloud'da 1 bot örneği (demo sınırı), `RiskPercent = 1`.
-- Önerilen: `#Japan225` (spot), 4s, SRA (Mechi Radar testinde en tutarlı sonuç veren sembol ve zaman dilimi). En az **8 hafta**.
+- Önerilen: `#Japan225` (spot), 4s, SRA (Mechi Radar testinde 2,4 yılda +20R; ancak son 11 ayda yaklaşık başa baş, +2R / 55 işlem — kenar kanıtlanmış değil). En az **8 hafta**.
 - Her hafta kontrol:
   - Botun açtığı her işlemin Mechi Radar grafiğinde aynı mumda LONG/SHORT kutusu var mı? Yoksa neden (veri farkı, spread filtresi, lot)?
   - SL/TP her pozisyonda var mı, doğru mesafede mi?
