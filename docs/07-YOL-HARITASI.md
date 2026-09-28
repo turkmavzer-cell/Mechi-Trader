@@ -9,7 +9,7 @@
 ## Aşama 1 — İskelet ve derleme hattı
 - [ ] Depo kökünde .NET çözümü: Core, Bot, Tests
 - [ ] GitHub Actions: test + `.algo` derleme + Release (`v1.0.<n>`)
-- [ ] "Merhaba" cBot: başlayınca sembol, zaman dilimi, bakiye ve üst TF son kapanmış mumunu loglar; işlem açmaz
+- [ ] "Merhaba" cBot: başlayınca sembol, zaman dilimi, bakiye, son kapanmış mum ve lot bilgilerini loglar; işlem açmaz
 
 ## Aşama 2 — Core: indikatörler ve SAR + EMA 200 + MACD
 - [ ] Sma, Rma, Ema, Atr, Macd, Psar (+ birim testleri)
@@ -20,7 +20,8 @@
 ## Aşama 3 — Bot: emir ve risk
 - [ ] Hacim hesabı, SL/TP'li piyasa emri, etiket
 - [ ] Günlük limit, art arda stop, toplam düşüş, spread filtresi, `Enabled`
-- [ ] Yeniden başlatmada açık pozisyonu tanıma
+- [ ] Takip eden kâr al (`TrailingTp`, spec §1b): TP brokere gönderilmez, hedefte SL hedefe çekilir, `OnTick`'te takip
+- [ ] Yeniden başlatmada açık pozisyonu tanıma (takipteki pozisyonun takip durumunu da SL seviyesinden geri kurma)
 - [ ] Demo'da ilk işlem (kullanıcı kontrol eder)
 
 ## Aşama 4 — Demo ileri testi (en az 8 hafta)

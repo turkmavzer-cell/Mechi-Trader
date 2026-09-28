@@ -26,7 +26,8 @@ Botun en önemli kısmı. Aşağıdaki kurallar **kodda zorunlu**, parametreyle 
 
 ## Emir güvenliği
 
-- Her emir **SL ve TP ile birlikte** gönderilir. SL'siz pozisyon açılmaz; emir SL/TP'siz dolarsa hemen kapatılır.
+- Her emir **SL ile birlikte** gönderilir; `TrailingTp = false` ise TP de emirle gönderilir. SL'siz pozisyon açılmaz; emir SL'siz dolarsa hemen kapatılır.
+- Takip eden kâr alda SL yalnızca kâr yönünde taşınır (hedefe, sonra takip seviyesine); hiçbir durumda girişin gerisine geri çekilmez.
 - Kayma (slippage) üst sınırı parametresi (`MaxSlippagePips`).
 - Her pozisyon, bot etiketi (`Label = "MechiTrader-<strateji>-<sembol>-<tf>"`, ör. `MechiTrader-SARMACD-Japan225-M15`) ile açılır. Bot yalnızca kendi etiketli pozisyonlarını yönetir,
   kullanıcının elle açtığı işlemlere dokunmaz.

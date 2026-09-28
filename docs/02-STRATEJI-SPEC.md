@@ -24,6 +24,22 @@ SRA ve diğerleri parametreyle seçilebilir hale sonraki aşamada gelir.
 - **Aynı sembol + aynı strateji için tek pozisyon.** Açık pozisyon varken gelen sinyaller yok sayılır (Mechi Radar'daki `busyUntil`).
 - Stop ve hedef, emirle birlikte brokere gönderilir (sunucu tarafı SL/TP). Bot kapansa bile pozisyon korunur.
 
+## 1b. Takip eden kâr al (parametre `TrailingTp`, varsayılan açık önerilir)
+
+Mechi Radar'daki "Takip eden TP" düğmesiyle aynı kural (referans: `boxes.ts → simulate`, `params.trail`):
+
+- Stop aynı: giriş ∓ 1,5 ATR. Hedef seviyesi aynı: 2R.
+- Fiyat hedefe ulaşınca pozisyon **kapanmaz**: stop **hedef seviyesine** çekilir (en az +2R güvence) ve fiyat kâr yönünde gittikçe
+  görülen en iyi fiyatın `TrailAtr × ATR` gerisinden izler (`TrailAtr = 1,5`; ATR giriş mumundaki değer). Stop yalnızca kâr yönünde hareket eder.
+- Fiyat takip stopuna dönünce pozisyon kapanır.
+- **Botta uygulama:** TP brokere gönderilmez (yoksa hedefte kapanır). Emir yalnızca SL ile açılır; bot `OnTick`'te fiyat hedefe
+  ulaşınca `ModifyPosition` ile SL'yi hedefe taşır, sonra en iyi fiyat değiştikçe SL'yi günceller. SL her zaman brokerdedir;
+  bot durursa pozisyon son SL seviyesinde korunur (kâr en az hedef kadar, hedefe ulaşılmadıysa −1R).
+- Mechi Radar'da takip mum bazında (hedef mumundan sonraki mumdan itibaren), botta tik bazında çalışır; sonuçlar birebir aynı olmaz.
+  Eşleşme testinde yalnızca giriş/stop/hedef ve takip başlangıcı karşılaştırılır.
+- Geçmiş test (Mechi Radar `research/SRATR.md`): tüm stratejilerde işlem başına ortalama kazanç yaklaşık iki katı; Japan 225 SAR + MACD
+  15dk'da fark küçük (+31,0R → +28,6R, 82 işlem).
+
 ## 2. İndikatör formülleri (TradingView ile uyumlu)
 
 Seri başındaki yetersiz veri NaN'dır; NaN içeren hesaplar sinyal üretmez.
