@@ -7,6 +7,7 @@ Bu depo **Mechi Trader**: Mechi Radar stratejilerini FxPro cTrader hesabında ot
 - Türkçe konuşur; yanıtlar Türkçe, kısa, maddeli, dalkavukluksuz.
 - **Yalnızca telefon** kullanır. Bilgisayar gerektiren adım önerme; gerekiyorsa açıkça "bilgisayar gerekir" de ve alternatif sun.
 - Kredi kartı isteyen servis önerme.
+- **Soru sorduğunda sadece cevap ver; kod değiştirme, dosya yazma, push yapma.** İş yapılmasını açıkça isterse yap.
 
 ## Değişmez kurallar
 1. **Strateji kuralları `docs/02-STRATEJI-SPEC.md`'dir.** Referans uygulama `reference/mechi-radar/` (TypeScript; Mechi Radar `src/core/` kopyası). C# Core bununla
