@@ -29,16 +29,17 @@ SRA ve diğerleri parametreyle seçilebilir hale sonraki aşamada gelir.
 Mechi Radar'daki "Takip eden TP" düğmesiyle aynı kural (referans: `boxes.ts → simulate`, `params.trail`):
 
 - Stop aynı: giriş ∓ 1,5 ATR. Hedef seviyesi aynı: 2R.
-- Fiyat hedefe ulaşınca pozisyon **kapanmaz**: stop **hedef seviyesine** çekilir (en az +2R güvence) ve fiyat kâr yönünde gittikçe
-  görülen en iyi fiyatın `TrailAtr × ATR` gerisinden izler (`TrailAtr = 1,5`; ATR giriş mumundaki değer). Stop yalnızca kâr yönünde hareket eder.
+- Fiyat hedefe ulaşınca pozisyon **kapanmaz**: stop, görülen en iyi fiyatın `TrailAtr × ATR` gerisine konur (`TrailAtr = 1,5`,
+  ATR giriş mumundaki değer). Hedef anında bu ≈ **+1R** seviyesidir; fiyat kâr yönünde gittikçe stop onunla ilerler, yalnızca kâr yönünde hareket eder.
+  (İlk denenen "stopu tam hedefe kilitle" yöntemi küçük geri çekilmede hemen kapanıyordu; testte geriden takip daha iyi — Mechi Radar `research/SRATR.md`.)
 - Fiyat takip stopuna dönünce pozisyon kapanır.
 - **Botta uygulama:** TP brokere gönderilmez (yoksa hedefte kapanır). Emir yalnızca SL ile açılır; bot `OnTick`'te fiyat hedefe
-  ulaşınca `ModifyPosition` ile SL'yi hedefe taşır, sonra en iyi fiyat değiştikçe SL'yi günceller. SL her zaman brokerdedir;
-  bot durursa pozisyon son SL seviyesinde korunur (kâr en az hedef kadar, hedefe ulaşılmadıysa −1R).
+  ulaşınca `ModifyPosition` ile SL'yi `en iyi fiyat ∓ TrailAtr × ATR` seviyesine taşır, sonra en iyi fiyat değiştikçe SL'yi günceller. SL her zaman brokerdedir;
+  bot durursa pozisyon son SL seviyesinde korunur (hedefe ulaşıldıysa en az ≈ +1R, ulaşılmadıysa −1R).
 - Mechi Radar'da takip mum bazında (hedef mumundan sonraki mumdan itibaren), botta tik bazında çalışır; sonuçlar birebir aynı olmaz.
   Eşleşme testinde yalnızca giriş/stop/hedef ve takip başlangıcı karşılaştırılır.
 - Geçmiş test (Mechi Radar `research/SRATR.md`): tüm stratejilerde işlem başına ortalama kazanç yaklaşık iki katı; Japan 225 SAR + MACD
-  15dk'da fark küçük (+31,0R → +28,6R, 82 işlem).
+  15dk: sabit +31,0R → geriden takip +36,5R (81 işlem).
 
 ## 2. İndikatör formülleri (TradingView ile uyumlu)
 

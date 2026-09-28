@@ -32,7 +32,7 @@ mechi-trader/
 | `Strategy` | enum | `SAR_MACD` | `SAR_MACD` (ilk sürüm); sonra `SRA`, `SRA_EMA200`, `SRA_ADX`, `SQUEEZE` |
 | `StopAtr` | double | 1,5 | Stop = StopAtr × ATR(14) |
 | `RewardRisk` | double | 2,0 | Hedef = RewardRisk × stop |
-| `TrailingTp` | bool | true | Takip eden kâr al (spec §1b): hedefte kapanmaz, SL hedefe çekilir ve takip eder |
+| `TrailingTp` | bool | true | Takip eden kâr al (spec §1b): hedefte kapanmaz, SL en iyi fiyatın TrailAtr×ATR gerisinden takip eder |
 | `TrailAtr` | double | 1,5 | Takip mesafesi = TrailAtr × ATR (giriş mumu) |
 | `RiskPercent` | double | 1,0 | İşlem başına bakiye riski (%) |
 | `MaxDailyLossR` | double | 3 | Günlük zarar limiti (R) |

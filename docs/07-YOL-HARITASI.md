@@ -20,7 +20,7 @@
 ## Aşama 3 — Bot: emir ve risk
 - [ ] Hacim hesabı, SL/TP'li piyasa emri, etiket
 - [ ] Günlük limit, art arda stop, toplam düşüş, spread filtresi, `Enabled`
-- [ ] Takip eden kâr al (`TrailingTp`, spec §1b): TP brokere gönderilmez, hedefte SL hedefe çekilir, `OnTick`'te takip
+- [ ] Takip eden kâr al (`TrailingTp`, spec §1b): TP brokere gönderilmez, hedefte SL en iyi fiyatın 1,5 ATR gerisine, `OnTick`'te takip
 - [ ] Yeniden başlatmada açık pozisyonu tanıma (takipteki pozisyonun takip durumunu da SL seviyesinden geri kurma)
 - [ ] Demo'da ilk işlem (kullanıcı kontrol eder)
 
